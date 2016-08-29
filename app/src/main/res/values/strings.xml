@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Firstapp</string>
+    <string name="action_settings">Settings</string>
+    <string name="but">download</string>
+    <string name="htmlDisplay">Click to view HTML</string>
+    <string name="title_activity_secound">SecoundActivity</string>
+</resources>
