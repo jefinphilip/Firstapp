@@ -22,8 +22,9 @@
     <Button
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Another Experiment "
-        android:id="@+id/nextBtn"
+        android:text="jsonInlistView "
+        android:id="@+id/jsonList"
+        android:onClick="parseJason"
         android:layout_marginBottom="191dp"
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"

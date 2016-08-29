@@ -24,6 +24,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 
 public class SecoundActivity extends AppCompatActivity {
+    String jsonstring;
 
 
 
@@ -43,7 +44,7 @@ public class SecoundActivity extends AppCompatActivity {
         tvSec = (TextView)findViewById(R.id.TextOfSecndActivity);
 
         Button Download =(Button)findViewById(R.id.download);
-        Button Next =(Button)findViewById(R.id.nextBtn);
+       // Button Next =(Button)findViewById(R.id.nextBtn);
 
 
         Bundle bundle= getIntent().getExtras();
@@ -51,7 +52,7 @@ public class SecoundActivity extends AppCompatActivity {
         String string = bundle.getString("dataFromFirstActivity");
         tvSec.setText( "Welcome "+string +" we are trying to fetch the Json Data From a web site using HttpUrlRequest and Display the username from that :");
 
-        Next.setOnClickListener(new View.OnClickListener() {
+       /* Next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
@@ -62,6 +63,7 @@ public class SecoundActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+        */
 
 
         Download.setOnClickListener(new View.OnClickListener() {
@@ -104,22 +106,9 @@ public class SecoundActivity extends AppCompatActivity {
 
 
                 String jsonBuffer = stringBuffer.toString();
-                StringBuilder stringBuilder= new StringBuilder();
-                JSONArray jsonArray = new JSONArray(jsonBuffer);
-                for(int i=0;i<jsonArray.length();i++) {
-                    JSONObject jsonObject = jsonArray.getJSONObject(i);
+                //StringBuilder stringBuilder= new StringBuilder();
 
-                    //int id= jsonObject.getInt("id");
-                    String email= jsonObject.getString("email");
-                    String username= jsonObject.getString("username");
-                    // String password= jsonObject.getString("password");
-
-
-                    stringBuilder.append("Name: "+username+" Email: "+email+"\n");
-
-                }
-
-                return stringBuilder.toString();
+                return jsonBuffer;
 
 
 
@@ -127,8 +116,7 @@ public class SecoundActivity extends AppCompatActivity {
                 e.printStackTrace();
             } catch (IOException e) {
                 e.printStackTrace();
-            } catch (JSONException e) {
-                e.printStackTrace();
+
             }
             if(connection !=null)
             {
@@ -145,6 +133,25 @@ public class SecoundActivity extends AppCompatActivity {
 
             super.onPostExecute(result);
             tvSec.setText(result);
+            jsonstring=result;
+
+
+
+        }
+    }
+
+
+    public void parseJason(View view)
+    {
+        if (jsonstring==null)
+        {
+            tvSec.setText("wrong");
+        }
+        else
+        {
+            Intent intent = new Intent(this,DisplayListView.class);
+            intent.putExtra("json_data",jsonstring);
+            startActivity(intent);
         }
     }
 
